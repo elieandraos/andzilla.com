@@ -26,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+     /**
+     * Categories relation.
+     * 
+     * @return type
+     */
+    public function categories()
+    {
+        return $this->hasMany(\App\Models\Category::class);
+    }
 }
