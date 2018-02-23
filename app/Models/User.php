@@ -39,6 +39,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Transactions relation.
+     * 
+     * @return type
+     */
+    public function transactions()
+    {
+        return $this->hasMany(\App\Models\Transaction::class);
+    }
+
+    /**
      * Assigns predefined categories for the user.
      * 
      * @return type
