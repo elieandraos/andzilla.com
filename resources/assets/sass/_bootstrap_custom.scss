@@ -1,0 +1,107 @@
+
+$color-primary: #22292F; /* color of titles */
+$color-secondary: #BBBBBB; /* color of sub-titles */
+$color-tertiary: #4b6372; /* color of normal text */
+$font-size-primary: 24px; /* font size of titles */
+$font-size-secondary: 18px; /* font size of sub-titles */
+$font-size-tertiary: 14px; /* font size of normal text */
+$padding: 24px; /* consistent padding values */
+
+/** Body **/
+html body{
+    font-family: "Lato", sans-serif;
+    font-size: $font-size-tertiary;
+    color: $color-tertiary;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+    font-weight: 300;
+}
+/** End body **/
+
+
+/** Links **/
+a.btn-link{
+	color: #525252;
+}
+a.btn-link:hover{
+	text-decoration: none;
+	color: #BBBBBB;
+}
+/** End of links **/
+
+
+/** Navbar **/
+nav.navbar-default{
+    background: linear-gradient(135deg, #2890d2 0%, #566cd4 50%, #8549d5 100%);
+    border-color: #dae0e5;
+}
+nav.navbar-default .navbar-brand, .navbar-nav > li > a{
+    color : #FFF !important;
+    font-family: "Open Sans";
+}
+/** End Navbar **/
+
+/** Headers **/
+h1.title
+{
+	font-size: $font-size-primary;
+	color: $color-primary;
+	font-family: "Roboto Condensed";
+	margin: 0;
+	padding: 0;
+	margin-bottom: 15px;
+}
+h2.subtitle
+{
+	color: $color-secondary;
+	font-size: $font-size-secondary;
+	margin: 0;
+	padding: 0;
+	margin-bottom: 15px;
+}
+/** End of header **/
+
+
+/** Panels **/
+div.panel-body
+{
+	padding: $padding;
+	box-shadow: none;
+}
+/** End of panels **/
+
+
+/** Forms **/
+.form-horizontal .form-group:last-child{
+	margin-bottom: 0;
+}
+.form-horizontal .form-group label{
+	font-weight: 300;
+}
+.form-group input.form-control, 
+.form-group textarea.form-control{
+    line-height: 2.375rem;
+    min-height: 2.375rem;
+    position: relative;
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+    background: #fff;
+    padding: 0 .8125rem;
+    box-shadow: none;
+}
+/* remove blur and blue border on focus */
+.form-group .form-control:focus,
+.has-error .form-group .form-control:focus{
+	outline: 0 !important;
+	border-color: #a8a8a8 !important;
+	box-shadow: none !important;
+}
+.form-group span.help-block{
+	font-size: 12px;
+}
+/* remove yellow background on focus or autofill */
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+}
+/** End of forms **/
+
