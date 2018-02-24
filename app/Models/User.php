@@ -59,7 +59,7 @@ class User extends Authenticatable
 
         $predefined = [
             ['name' => 'Hair & Beauty', 'icon' => 'fa fa-venus-mars'],
-            ['name' => 'Bills', 'icon' => 'fa fa-dollar'],
+            ['name' => 'Monthly Bills', 'icon' => 'fa fa-dollar'],
             ['name' => 'Car', 'icon' => 'fa fa-car'],
             ['name' => 'Clothes & Shoes', 'icon' => 'fa fa-shopping-bag'],
             ['name' => 'Eating Out', 'icon' => 'fa fa-beer'],
@@ -72,6 +72,8 @@ class User extends Authenticatable
             ['name' => 'Online subscriptions', 'icon' => 'fa fa-mouse-pointer'],
             ['name' => 'Savings', 'icon' => 'fa fa-save'],
             ['name' => 'Wedding', 'icon' => 'fa fa-bell'],
+            ['name' => 'Insurance Programs', 'icon' => 'fa lock'],
+            ['name' => 'Dental Care', 'icon' => 'fa fa-cc-visa'],
         ];
 
         foreach($predefined as $category){

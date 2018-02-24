@@ -47,7 +47,7 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li>
-                                <a href="{{ route('transactions') }}">Cashflow</a>
+                                <a href="{{ route('transactions') }}">Finances</a>
                             </li>
 
                             <li class="dropdown">

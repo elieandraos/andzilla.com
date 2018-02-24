@@ -33,7 +33,7 @@ class TransactionsController extends Controller
 	 */
     public function index()
     {
-    	$transactions = Transaction::mine()->orderBy('due_at', 'ASC')->paginate();
+    	$transactions = Transaction::mine()->orderBy('due_at', 'DESC')->paginate();
     	return view('transactions.index', [ 'transactions' => $transactions ]);
     }
 
