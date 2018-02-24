@@ -1,10 +1,10 @@
 
 $color-primary: #22292F; /* color of titles */
-$color-secondary: #BBBBBB; /* color of sub-titles */
+$color-secondary: #a8a8a8; /* color of sub-titles */
 $color-tertiary: #4b6372; /* color of normal text */
 $font-size-primary: 24px; /* font size of titles */
-$font-size-secondary: 18px; /* font size of sub-titles */
-$font-size-tertiary: 14px; /* font size of normal text */
+$font-size-secondary: 16px; /* font size of sub-titles */
+$font-size-tertiary: 13px; /* font size of normal text */
 $padding: 24px; /* consistent padding values */
 
 /** Body **/
@@ -25,7 +25,7 @@ a.btn-link{
 }
 a.btn-link:hover{
 	text-decoration: none;
-	color: #BBBBBB;
+	color: #495056;
 }
 /** End of links **/
 
@@ -34,6 +34,7 @@ a.btn-link:hover{
 nav.navbar-default{
     background: linear-gradient(135deg, #2890d2 0%, #566cd4 50%, #8549d5 100%);
     border-color: #dae0e5;
+    margin-bottom: 32px;
 }
 nav.navbar-default .navbar-brand, .navbar-nav > li > a{
     color : #FFF !important;
@@ -60,9 +61,10 @@ h2.subtitle
 {
 	color: $color-secondary;
 	font-size: $font-size-secondary;
-	margin: 0;
-	padding: 0;
-	margin-bottom: 15px;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 15px;
+    margin-top: -9px;
 }
 /** End of header **/
 
@@ -100,6 +102,7 @@ div.panel-body
 	outline: 0 !important;
 	border-color: #a8a8a8 !important;
 	box-shadow: none !important;
+	background: #fff !important;
 }
 .form-group span.help-block{
 	font-size: 12px;
@@ -110,3 +113,9 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 }
 /** End of forms **/
 
+
+/** Tables **/
+div table.table.table-hover th{
+    color: $color-primary;
+}
+/** End of tables **/

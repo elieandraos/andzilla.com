@@ -1,0 +1,89 @@
+div.empty-list
+{
+	width: 100%;
+	text-align: center;
+	color: #BBB;
+	padding: 10px;
+	font-style: italic;
+}
+
+/** Bootstrap select customization **/
+div.bootstrap-select .dropdown-menu > li > a{
+	font-weight: 300;
+}
+div.bootstrap-select .dropdown-menu > li > a > span.fa{
+    color: #4b6372;
+    margin-right: 10px;
+    font-size: 16px;
+    width: 15px;
+}
+div.bootstrap-select button.btn-default{
+	font-weight: 300;
+	color: #4b6372;
+}
+div.bootstrap-select .dropdown-menu > .active > a,
+div.bootstrap-select .dropdown-menu > .active > a:hover,
+div.bootstrap-select .dropdown-menu > .active > a:focus{
+	background-color: #FFF;
+	color: #4b6372;
+}
+/** End of bootsrap select customization **/
+
+/** Bootstrap datepicker customization **/
+div.datepicker {
+	padding: 10px;
+}
+/** End of bootstrap datepicker customization **/
+
+/** Pretty checkbox **/
+div.pretty{
+	margin-top: 10px;
+}
+div.pretty .state label{
+	font-weight: 300 !important;
+}
+/** End of pretty checkbox **/
+
+/** Transaction table **/
+table.table tr td span.amount
+{
+	padding: 3px 10px;
+    color: #666;
+    font-family: "Roboto Condensed";
+    border-radius: 7px;
+    font-size: 12px;
+}
+table.table tr td.due-at{
+	font-size: 12px;
+}
+table.table tr td span.amount fa{
+	margin-right: 10px;
+}
+table.table tr td p.subtablecell{
+	margin-bottom: 0px;
+	font-size: 11px;
+	font-weight: 400;
+	color: #a1a1a1;
+}
+table td.fixed-width-m,
+table th.fixed-width-m{
+	width: 130px !important
+}
+td.row-actions ul{
+    visibility: hidden;
+    margin: 0;
+    padding: 0;
+}
+td.row-actions ul li 
+{
+    display: inline;
+    text-align: center;
+}
+tr:hover td.row-actions ul{
+    visibility: visible;
+}
+td.transaction-title{
+	font-size: 14px;
+	font-weight: 400;
+}
+/** End of transaction table **/

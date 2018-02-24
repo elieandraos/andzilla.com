@@ -8,6 +8,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+require('bootstrap-select');
+require('bootstrap-datepicker');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -20,3 +22,19 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
+
+$(document).ready(function(){
+	$('.selectpicker').selectpicker({
+	 	'liveSearch' : true,
+	 	'showTick' : true,
+	 	'tickIcon' : 'fa-check',
+	 	'iconBase' : 'fa'
+	});
+
+	$('.datepicker').datepicker({
+	    format: "dd M, yyyy",
+	    clearBtn: true,
+	    orientation: "bottom auto",
+	    todayHighlight: true
+	});
+})

@@ -16,7 +16,7 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->boolean('debit');
+            $table->boolean('debit')->default(0);
             $table->double('amount', 8, 2);
             $table->date('due_at');
 

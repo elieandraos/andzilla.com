@@ -58,18 +58,20 @@ class User extends Authenticatable
         $categories = [];
 
         $predefined = [
-            ['name' => 'Hair & Beauty', 'icon' => 'fas fa-venus-mars'],
-            ['name' => 'Bills', 'icon' => 'fas fa-dollar-sign'],
-            ['name' => 'Car', 'icon' => 'fas fa-car'],
-            ['name' => 'Clothes & Shoes', 'icon' => 'fas fa-shopping-bag'],
-            ['name' => 'Eating Out', 'icon' => 'fas fa-utensils'],
-            ['name' => 'Entertainment', 'icon' => 'fas fa-beer'],
-            ['name' => 'Fitness & Sports', 'icon' => 'fas fa-shopping-bag'],
-            ['name' => 'Gifts', 'icon' => 'fas fa-gift'],
-            ['name' => 'Health Care', 'icon' => 'fas fa-heartbeat'],
-            ['name' => 'Traveling', 'icon' => 'fas fa-plane'],
-            ['name' => 'House', 'icon' => 'fas fa-home'],
-            ['name' => 'Online subscriptions', 'icon' => 'fas fa-mouse-pointer'],
+            ['name' => 'Hair & Beauty', 'icon' => 'fa fa-venus-mars'],
+            ['name' => 'Bills', 'icon' => 'fa fa-dollar'],
+            ['name' => 'Car', 'icon' => 'fa fa-car'],
+            ['name' => 'Clothes & Shoes', 'icon' => 'fa fa-shopping-bag'],
+            ['name' => 'Eating Out', 'icon' => 'fa fa-beer'],
+            ['name' => 'Entertainment', 'icon' => 'fa fa-music'],
+            ['name' => 'Fitness & Sports', 'icon' => 'fa fa-shopping-bag'],
+            ['name' => 'Gifts', 'icon' => 'fa fa-gift'],
+            ['name' => 'Health Care', 'icon' => 'fa fa-heartbeat'],
+            ['name' => 'Traveling', 'icon' => 'fa fa-plane'],
+            ['name' => 'House', 'icon' => 'fa fa-home'],
+            ['name' => 'Online subscriptions', 'icon' => 'fa fa-mouse-pointer'],
+            ['name' => 'Savings', 'icon' => 'fa fa-save'],
+            ['name' => 'Wedding', 'icon' => 'fa fa-bell'],
         ];
 
         foreach($predefined as $category){

@@ -8,8 +8,28 @@
 // Variables
 @import "variables";
 
-// Application styles
+// Customizing bootstrap
 @import "bootstrap_custom";
+
+// Application styles
+@import "styles";
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Bootstrap select
+// https://silviomoreto.github.io/bootstrap-select/
+@import "~bootstrap-select/sass/bootstrap-select";
+
+// Font awesome
+// fontawesome.io
+@import "~font-awesome/scss/font-awesome";
+
+// Pretty checkbox
+// https://lokesh-coder.github.io/pretty-checkbox/
+@import '~pretty-checkbox/src/pretty-checkbox.scss';
+
+// Bootstrap datepicker
+// https://github.com/uxsolutions/bootstrap-datepicker
+@import "~bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css";
+
