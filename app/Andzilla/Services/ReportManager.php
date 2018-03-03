@@ -16,6 +16,7 @@ class ReportManager
 	{
 		return Transaction::with('category')
 				->selectRaw('*, sum(amount) as total')
+				->mine()
 				->whereMonth('due_at', '=', date('m'))
 				->where('debit', '=', 0)
 				->groupBy('category_id')
@@ -30,6 +31,7 @@ class ReportManager
 	public function getMonthlyTotalExpenses()
 	{
 		return Transaction::selectRaw('MONTH(due_at) as month, sum(amount) as total')
+				->mine()
 				->where('debit', '=', 0)
 				->whereYear('due_at', '=', date('Y'))
 				->groupBy('month')
@@ -50,6 +52,7 @@ class ReportManager
 
 		$collection = Transaction::with('category')
 				->selectRaw('*, MONTH(due_at) as month')
+				->mine()
 				->whereYear('due_at', '=', date('Y'))
 				->where('debit', '=', 0)
 				->get()
