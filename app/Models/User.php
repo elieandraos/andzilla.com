@@ -74,6 +74,7 @@ class User extends Authenticatable
             ['name' => 'Wedding', 'icon' => 'fa fa-bell'],
             ['name' => 'Insurance Programs', 'icon' => 'fa lock'],
             ['name' => 'Dental Care', 'icon' => 'fa fa-cc-visa'],
+            ['name' => 'Other', 'icon' => 'fa fa-paper-plane'],
         ];
 
         foreach($predefined as $category){

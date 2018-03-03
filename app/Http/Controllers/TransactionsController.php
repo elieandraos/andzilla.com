@@ -33,7 +33,7 @@ class TransactionsController extends Controller
 	 */
     public function index()
     {
-    	$transactions = Transaction::mine()->orderBy('due_at', 'DESC')->paginate();
+    	$transactions = Transaction::mine()->orderBy('due_at', 'DESC')->paginate(8);
     	return view('transactions.index', [ 'transactions' => $transactions ]);
     }
 
@@ -100,7 +100,11 @@ class TransactionsController extends Controller
     public function update(TransactionRequest $request, $transactionId)
     {
         $transaction = Transaction::findOrFail($transactionId);
-        $transaction->update($request->all());
+        $input = $request->all();
+
+        if(!$request->get('debit'))
+            $input['debit'] = 0;
+        $transaction->update($input);
         
         flash('Transaction was updated successfully.')->success();
         return redirect(route('transactions'));

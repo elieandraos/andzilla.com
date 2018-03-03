@@ -57,11 +57,9 @@
                                     </td>
                                 </tr>
                             @endforeach
-
-                            {!! $transactions->links() !!}
-
                         </tbody>
                     </table>
+                    <center>{!! $transactions->links() !!}</center>
                     @endif
                 </div>
             </div>

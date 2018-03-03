@@ -87,3 +87,32 @@ td.transaction-title{
 	font-weight: 400;
 }
 /** End of transaction table **/
+
+/** Charts **/
+.chart-legend{
+	color: #000 !important;
+	font-style: italic;;
+}
+.btn-group.flexing {
+  display: flex;
+  margin-bottom: 12px;
+}
+.flexing .btn {
+  flex: 1
+}
+.flexing .btn:hover,
+.flexing .btn.active,
+.flexing .btn:hover a,
+.flexing .btn.active a{
+	color: #fff;
+    background-color: #6b9dbb !important;
+    border-color: #538db0;
+    opacity: 0.85;
+    text-decoration: none;
+}
+.flexing .btn a{
+	display: block;
+	width: 100%;
+	height: 100%;
+	color: #7da8c3;
+}

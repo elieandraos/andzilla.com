@@ -21,6 +21,7 @@
   "dependencies": {
     "bootstrap-datepicker": "^1.7.1",
     "bootstrap-select": "^1.12.4",
+    "chart.js": "^2.7.1",
     "font-awesome": "^4.7.0",
     "pretty-checkbox": "^3.0.3"
   }

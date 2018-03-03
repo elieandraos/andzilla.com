@@ -52,6 +52,9 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
+             // this only for local dev, needed to remove the 'ONLY_FULL_GROUP_BY' mysql mode
+            // if you do on homestead vagrant ssh and type mysql -u homestead -psecret -e "select @@sql_mode" you see the full list of modese
+            'modes'     =>  ['STRICT_TRANS_TABLES','NO_ZERO_IN_DATE','NO_ZERO_DATE','ERROR_FOR_DIVISION_BY_ZERO','NO_AUTO_CREATE_USER','NO_ENGINE_SUBSTITUTION']
         ],
 
         'pgsql' => [
