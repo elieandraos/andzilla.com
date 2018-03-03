@@ -39,3 +39,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 - cache transactions per user, as it will be faster to fetch for reports
 - delete transcations
 - category module
+- verify email address upon sign up
+- mail configuration on server
+- npm configuration on server (move back app/js css/ to gitgnore)

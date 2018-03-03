@@ -69,10 +69,11 @@ class User extends Authenticatable
             ['name' => 'Health Care', 'icon' => 'fa fa-heartbeat'],
             ['name' => 'Traveling', 'icon' => 'fa fa-plane'],
             ['name' => 'House', 'icon' => 'fa fa-home'],
-            ['name' => 'Online subscriptions', 'icon' => 'fa fa-mouse-pointer'],
+            ['name' => 'Online subscriptions', 'icon' => 'fa fa-comment'],
             ['name' => 'Savings', 'icon' => 'fa fa-save'],
             ['name' => 'Wedding', 'icon' => 'fa fa-bell'],
-            ['name' => 'Insurance Programs', 'icon' => 'fa lock'],
+            ['name' => 'Income', 'icon' => 'fa fa-database'],
+            ['name' => 'Insurance Programs', 'icon' => 'fa fa-code'],
             ['name' => 'Dental Care', 'icon' => 'fa fa-cc-visa'],
             ['name' => 'Other', 'icon' => 'fa fa-paper-plane'],
         ];
