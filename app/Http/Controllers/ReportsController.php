@@ -18,7 +18,7 @@ class ReportsController extends Controller
     public function index()
     {
     	$report = $this->reportManager->getCurrentMonthExpensesByCategory();
-        $datasets = $report->pluck('amount')->toArray();
+        $datasets = $report->pluck('total')->toArray();
     	$labels = $report->pluck('category.name')->toArray();    
        
     	return view('reports.index', [ 
