@@ -15,7 +15,8 @@
             	context: '',
                 chartId: this.randId(),
                 backgroundColor: [
-                    "#EF9A9A", "#CE93D8", "#9FA8DA", "#80CBC4", "#90CAF9", "#E6EE9C", "#FFCC80", "#B0BEC5"
+                     "#EF9A9A", "#CE93D8", "#9FA8DA", "#80CBC4", "#90CAF9", "#E6EE9C", "#FFCC80", "#B0BEC5",
+                     "#EF5350", "#AB47BC", "#7E57C2", "#42A5F5", "#26C6DA", "#26A69A", "#D4E157", "#FFCA28",
                 ]
             }
         },
