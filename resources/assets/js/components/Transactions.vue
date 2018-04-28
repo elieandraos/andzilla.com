@@ -111,7 +111,7 @@
             },
             handleTouchEvents(direction)
             {
-              alert(direction);
+               //alert(direction);
             } 
         }
     }
