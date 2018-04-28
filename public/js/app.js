@@ -82815,7 +82815,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
-        handleTouchEvents: function handleTouchEvents() {}
+        handleTouchEvents: function handleTouchEvents(direction) {
+            alert(direction);
+        }
     }
 });
 
@@ -82938,10 +82940,10 @@ var render = function() {
                 directives: [
                   {
                     name: "touch",
-                    rawName: "v-touch:tap",
+                    rawName: "v-touch:swipe",
                     value: _vm.handleTouchEvents,
                     expression: "handleTouchEvents",
-                    arg: "tap"
+                    arg: "swipe"
                   },
                   {
                     name: "touch-class",
@@ -83074,7 +83076,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             context: '',
             chartId: this.randId(),
-            backgroundColor: ["#EF9A9A", "#CE93D8", "#9FA8DA", "#80CBC4", "#90CAF9", "#E6EE9C", "#FFCC80", "#B0BEC5"]
+            backgroundColor: ["#EF9A9A", "#CE93D8", "#9FA8DA", "#80CBC4", "#90CAF9", "#E6EE9C", "#FFCC80", "#B0BEC5", "#EF5350", "#AB47BC", "#7E57C2", "#42A5F5", "#26C6DA", "#26A69A", "#D4E157", "#FFCA28"]
         };
     },
 
@@ -96301,7 +96303,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             context: '',
             chartId: this.randId(),
-            backgroundColor: ["#EF9A9A", "#CE93D8", "#9FA8DA", "#80CBC4", "#90CAF9", "#E6EE9C", "#FFCC80", "#B0BEC5"]
+            backgroundColor: ["#EF9A9A", "#CE93D8", "#9FA8DA", "#80CBC4", "#90CAF9", "#E6EE9C", "#FFCC80", "#B0BEC5", "#EF5350", "#AB47BC", "#7E57C2", "#42A5F5", "#26C6DA", "#26A69A", "#D4E157", "#FFCA28"]
         };
     },
 

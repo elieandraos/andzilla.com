@@ -79,8 +79,8 @@ td.row-actions ul li
     display: inline;
     text-align: center;
 }
-td.row-actions.touch-active ul{
-     visibility: visible;
+tr:hover td.row-actions ul{
+    visibility: visible;
 }
 td.transaction-title{
 	font-size: 13px;

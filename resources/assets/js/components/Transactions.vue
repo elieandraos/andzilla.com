@@ -24,7 +24,7 @@
                         {{ transaction.category_name }}
                     </p>
                 </td>
-                <td class="row-actions" v-touch:tap="handleTouchEvents" v-touch-class="'touch-active'">
+                <td class="row-actions" v-touch:swipe="handleTouchEvents" v-touch-class="'touch-active'">
                     <ul>
                         <li>
                             <a class="btn btn-info btn-xs" :href="transaction.edit_url">Edit</a>
@@ -109,9 +109,9 @@
                         console.log(error);
                     });
             },
-            handleTouchEvents()
+            handleTouchEvents(direction)
             {
-              
+              alert(direction);
             } 
         }
     }
