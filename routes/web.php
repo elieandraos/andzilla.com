@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('transactions/store', 'TransactionsController@store')->name('transactions.store');
     Route::get('transactions/{id}/edit', 'TransactionsController@edit')->name('transactions.edit');
     Route::post('transactions/{id}/update', 'TransactionsController@update')->name('transactions.update');
+    Route::post('transactions/fetch', 'TransactionsController@fetch')->name('transactions.fetch');
 
     // Reports
     Route::get('reports/current-month', 'ReportsController@index')->name('reports.current-month');
@@ -37,8 +38,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 /*
 @todo:
 - cache transactions per user, as it will be faster to fetch for reports
+- link transaction to client and supplier
 - delete transcations
 - category module
 - verify email address upon sign up
 - mail configuration on server
 - npm configuration on server (move back app/js css/ to gitgnore)
+- calendar module https://github.com/CroudSupport/vue-fullcalendar
+
+npm install -g ajv@^6.0.0 (fix npm ajv keywords error)
+*/
+

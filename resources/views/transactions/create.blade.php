@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-12">
             <h1 class="title">Add Transaction</h1>
             <h2 class="subtitle">Fill in your transaction details</h2>
 

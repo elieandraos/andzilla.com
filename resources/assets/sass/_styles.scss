@@ -79,11 +79,11 @@ td.row-actions ul li
     display: inline;
     text-align: center;
 }
-tr:hover td.row-actions ul{
-    visibility: visible;
+td.row-actions.touch-active ul{
+     visibility: visible;
 }
 td.transaction-title{
-	font-size: 14px;
+	font-size: 13px;
 	font-weight: 400;
 }
 /** End of transaction table **/

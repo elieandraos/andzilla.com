@@ -8,8 +8,12 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import moment from "moment";
+import Vue2TouchEvents from 'vue2-touch-events';
+
 require('bootstrap-select');
-require('bootstrap-datepicker');
+require('bootstrap-datepicker');;
+require('daterangepicker');
 
 
 /**
@@ -18,9 +22,14 @@ require('bootstrap-datepicker');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
  // http://tobiasahlin.com/blog/chartjs-charts-to-get-you-started/
+
+Vue.component('transactions', require('./components/Transactions.vue')); 
 Vue.component('graph-pie', require('./components/GraphPie.vue'));
 Vue.component('graph-line', require('./components/GraphLine.vue'));
 Vue.component('graph-horizontal-bar', require('./components/graphHorizontalBar.vue'));
+ 
+Vue.use(Vue2TouchEvents);
+
 
 const app = new Vue({
     el: '#app'
@@ -40,4 +49,22 @@ $(document).ready(function(){
 	    orientation: "bottom auto",
 	    todayHighlight: true
 	});
+
+	$('#reportrange').daterangepicker({
+        ranges: {
+           'Today': [moment(), moment()],
+           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+           'This Month': [moment().startOf('month'), moment().endOf('month')],
+           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        locale: {
+            format: 'DD/MMM/YYYY'
+        }
+    }, cb);
 })
+
+function cb(start, end) {
+    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+}

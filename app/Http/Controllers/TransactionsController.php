@@ -6,6 +6,7 @@ use Auth;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Requests\TransactionRequest;
+use App\Http\Resources\TransactionResource;
 
 class TransactionsController extends Controller
 {
@@ -27,14 +28,33 @@ class TransactionsController extends Controller
 	}
 
 	/**
-	 * Lists the user's transactions.
+	 * Index of the user transactions page.
 	 * 
 	 * @return type
 	 */
     public function index()
     {
-    	$transactions = Transaction::mine()->orderBy('due_at', 'DESC')->paginate(8);
-    	return view('transactions.index', [ 'transactions' => $transactions ]);
+        // get the user categories
+        $user_categories = $this->user->categories()->orderBy('name', 'ASC')->get();
+        $categories = $user_categories->pluck('name', 'id')->toArray();
+        //Create an array of option attribute
+        $icons_attributes = [];
+        foreach($user_categories as $item)
+            $icons_attributes[$item->id] = ['data-icon' => $item->icon ];
+
+    	return view('transactions.index', ['categories' => $categories, 'icons_attributes' => $icons_attributes ]);
+    }
+
+    /**
+     * Fetch the user transatcions.
+     * 
+     * @param Request $request 
+     * @return type
+     */
+    public function fetch(Request $request)
+    {
+        $transactions = Transaction::mine()->orderBy('due_at', 'DESC')->paginate(15);
+        return TransactionResource::collection($transactions);
     }
 
     /**

@@ -22,7 +22,11 @@
     "bootstrap-datepicker": "^1.7.1",
     "bootstrap-select": "^1.12.4",
     "chart.js": "^2.7.1",
+    "daterangepicker": "^2.1.27",
     "font-awesome": "^4.7.0",
-    "pretty-checkbox": "^3.0.3"
+    "moment": "^2.21.0",
+    "pretty-checkbox": "^3.0.3",
+    "vue-infinite-loading": "^2.2.3",
+    "vue2-touch-events": "^1.0.0"
   }
 }
