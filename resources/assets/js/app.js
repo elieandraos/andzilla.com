@@ -61,7 +61,8 @@ $(document).ready(function(){
         },
         locale: {
             format: 'DD/MMM/YYYY'
-        }
+        },
+        autoApply: true,
     }, cb);
 })
 

@@ -166,6 +166,21 @@ div.empty-list {
 
 /** Bootstrap select customization **/
 
+div.btn-group.bootstrap-select {
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+  background: #fff;
+}
+
+div.btn-group.bootstrap-select button,
+div.btn-group.bootstrap-select button:hover,
+div.btn-group.bootstrap-select button:active {
+  border: none;
+  background-color: #FFF !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
 div.bootstrap-select .dropdown-menu > li > a {
   font-weight: 300;
 }
@@ -189,6 +204,11 @@ div.bootstrap-select .dropdown-menu > .active > a:focus {
   color: #4b6372;
 }
 
+.bootstrap-select.btn-group .dropdown-toggle .filter-option {
+  font-size: 13px !important;
+  color: #4b6372 !important;
+}
+
 /** End of bootsrap select customization **/
 
 /** Bootstrap datepicker customization **/
@@ -198,6 +218,27 @@ div.datepicker {
 }
 
 /** End of bootstrap datepicker customization **/
+
+/** Bootstrap daterangepicker customization **/
+
+div#reportrange {
+  border: 1px solid #e8e8e8 !important;
+  border-radius: 5px !important;
+  background: #fff !important;
+  padding: 7px 10px !important;
+  min-width: 220px !important;
+  color: #4b6372;
+  font-size: 13px;
+}
+
+.caret {
+  float: right;
+  margin-right: 4px;
+  margin-top: 10px;
+  color: #4b6372 !important;
+}
+
+/** End of bootstrap daterangepicker customization **/
 
 /** Pretty checkbox **/
 
@@ -249,7 +290,10 @@ td.row-actions ul {
 
 td.row-actions ul li {
   display: inline;
-  text-align: center;
+  margin-left: 5px;
+  width: 100%;
+  float: right;
+  text-align: right;
 }
 
 tr:hover td.row-actions ul {

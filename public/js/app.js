@@ -45005,7 +45005,8 @@ $(document).ready(function () {
         },
         locale: {
             format: 'DD/MMM/YYYY'
-        }
+        },
+        autoApply: true
     }, cb);
 });
 
@@ -82816,7 +82817,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         handleTouchEvents: function handleTouchEvents(direction) {
-            alert(direction);
+            //alert(direction);
         }
     }
 });
