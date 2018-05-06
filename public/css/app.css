@@ -174,11 +174,13 @@ div.btn-group.bootstrap-select {
 
 div.btn-group.bootstrap-select button,
 div.btn-group.bootstrap-select button:hover,
-div.btn-group.bootstrap-select button:active {
+div.btn-group.bootstrap-select button:active,
+div.btn-group.bootstrap-select button:focus {
   border: none;
   background-color: #FFF !important;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
+  outline: none !important;
 }
 
 div.bootstrap-select .dropdown-menu > li > a {

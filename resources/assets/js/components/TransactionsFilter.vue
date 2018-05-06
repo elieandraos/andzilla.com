@@ -1,11 +1,11 @@
 <template>
     <div class='transactions-filter clearfix'>
         <!-- results count -->
-        <span id="filter-count" class="badge pull-right" data-toggle="tooltip" title="Total results" v-if="total">{{ total }}</span>
+        <span id="filter-count" class="badge pull-right" data-toggle="tooltip" title="Total transactions" v-if="total">{{ total }}</span>
 
         <!-- Categories filter -->
         <select 
-            multiple='multiple' data-selected-text-format='count > 1' title='Categories'
+            multiple='multiple' data-selected-text-format='count > 1' title='Categories' data-live-search="true"
             class='selectpicker pull-right' name='categories[]' id='categories-filter'
             v-if="loaded" v-model="payload.categories"
         >
