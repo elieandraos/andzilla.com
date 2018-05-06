@@ -66,4 +66,40 @@ class Transaction extends Model
         return $query->where('user_id', '=', $authenticatedUser->id);
     }
 
+     /**
+     * Filter the transactions by categories.
+     * 
+     * @param type $query 
+     * @return type
+     */
+    public function scopeByCategories($query, $categories = [])
+    {
+        if(!is_array($categories) || !count($categories))
+            return $query;
+       
+        $categories = collect($categories)->map(function($item){
+            return (int) $item;
+        })->toArray();
+
+        return $query->whereIn('category_id', $categories);
+    }
+
+    /**
+     * Filter the transactions by date range
+     * 
+     * @param type $query 
+     * @param type $dateString 
+     * @return type
+     */
+    public function scopeByDaterange($query, $dateString = null)
+    {
+        if(!$dateString)
+            return $query;
+
+        $date = explode("-", $dateString);
+        $startDate = Carbon::parse($date[0])->format('Y-m-d');
+        $endDate   = Carbon::parse($date[1])->format('Y-m-d');
+        
+        return $query->where('due_at', '>=', $startDate)->where('due_at', '<=', $endDate);
+    }
 }

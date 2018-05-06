@@ -222,13 +222,13 @@ div.datepicker {
 /** Bootstrap daterangepicker customization **/
 
 div#reportrange {
-  border: 1px solid #e8e8e8 !important;
+  border: none !important;
   border-radius: 5px !important;
-  background: #fff !important;
-  padding: 7px 10px !important;
-  min-width: 220px !important;
-  color: #4b6372;
-  font-size: 13px;
+  background: transparent !important;
+  padding: 5px 10px !important;
+  color: #4b6372 !important;
+  font-size: 13px !important;
+  cursor: pointer;
 }
 
 .caret {
@@ -251,6 +251,31 @@ div.pretty .state label {
 }
 
 /** End of pretty checkbox **/
+
+/** Transactions filer **/
+
+div.transactions-filter {
+  padding: 10px;
+  background-color: #f9fafb;
+}
+
+div.transactions-filter div.btn-group.bootstrap-select {
+  width: auto !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+div.transactions-filter div.btn-group.bootstrap-select button {
+  background-color: transparent !important;
+}
+
+div.transactions-filter .badge {
+  background-color: #cecece;
+  margin-top: 7px;
+  color: #fff;
+}
+
+/** End of transactions filter **/
 
 /** Transaction table **/
 

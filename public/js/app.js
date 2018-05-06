@@ -44940,10 +44940,8 @@ module.exports = __webpack_require__(354);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_touch_events__ = __webpack_require__(289);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_touch_events___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue2_touch_events__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_touch_events__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_touch_events___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue2_touch_events__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -44954,7 +44952,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 __webpack_require__(264);
 
 window.Vue = __webpack_require__(285);
-
 
 
 __webpack_require__(290);
@@ -44973,46 +44970,27 @@ Vue.component('graph-pie', __webpack_require__(298));
 Vue.component('graph-line', __webpack_require__(348));
 Vue.component('graph-horizontal-bar', __webpack_require__(351));
 
-Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue2_touch_events___default.a);
+Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue2_touch_events___default.a);
 
 var app = new Vue({
-    el: '#app'
+	el: '#app'
 });
 
 $(document).ready(function () {
-    $('.selectpicker').selectpicker({
-        'liveSearch': true,
-        'showTick': true,
-        'tickIcon': 'fa-check',
-        'iconBase': 'fa'
-    });
+	$('.selectpicker').selectpicker({
+		'liveSearch': true,
+		'showTick': true,
+		'tickIcon': 'fa-check',
+		'iconBase': 'fa'
+	});
 
-    $('.datepicker').datepicker({
-        format: "dd M, yyyy",
-        clearBtn: true,
-        orientation: "bottom auto",
-        todayHighlight: true
-    });
-
-    $('#reportrange').daterangepicker({
-        ranges: {
-            'Today': [__WEBPACK_IMPORTED_MODULE_0_moment___default()(), __WEBPACK_IMPORTED_MODULE_0_moment___default()()],
-            'Yesterday': [__WEBPACK_IMPORTED_MODULE_0_moment___default()().subtract(1, 'days'), __WEBPACK_IMPORTED_MODULE_0_moment___default()().subtract(1, 'days')],
-            'Last 7 Days': [__WEBPACK_IMPORTED_MODULE_0_moment___default()().subtract(6, 'days'), __WEBPACK_IMPORTED_MODULE_0_moment___default()()],
-            'Last 30 Days': [__WEBPACK_IMPORTED_MODULE_0_moment___default()().subtract(29, 'days'), __WEBPACK_IMPORTED_MODULE_0_moment___default()()],
-            'This Month': [__WEBPACK_IMPORTED_MODULE_0_moment___default()().startOf('month'), __WEBPACK_IMPORTED_MODULE_0_moment___default()().endOf('month')],
-            'Last Month': [__WEBPACK_IMPORTED_MODULE_0_moment___default()().subtract(1, 'month').startOf('month'), __WEBPACK_IMPORTED_MODULE_0_moment___default()().subtract(1, 'month').endOf('month')]
-        },
-        locale: {
-            format: 'DD/MMM/YYYY'
-        },
-        autoApply: true
-    }, cb);
+	$('.datepicker').datepicker({
+		format: "dd M, yyyy",
+		clearBtn: true,
+		orientation: "bottom auto",
+		todayHighlight: true
+	});
 });
-
-function cb(start, end) {
-    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-}
 
 /***/ }),
 /* 264 */
@@ -82720,6 +82698,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_Helper_js__ = __webpack_require__(296);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TransactionsFilter_vue__ = __webpack_require__(371);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TransactionsFilter_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__TransactionsFilter_vue__);
 //
 //
 //
@@ -82759,13 +82739,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+
 
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    components: { InfiniteLoading: __WEBPACK_IMPORTED_MODULE_0_vue_infinite_loading___default.a },
+    components: { InfiniteLoading: __WEBPACK_IMPORTED_MODULE_0_vue_infinite_loading___default.a, TransactionsFilter: __WEBPACK_IMPORTED_MODULE_3__TransactionsFilter_vue___default.a },
     mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_Helper_js__["a" /* default */]],
     data: function data() {
         return {
@@ -82775,9 +82760,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             total: 0
         };
     },
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        this.listenToEvents();
+    },
 
     methods: {
+        /*
+         * Event handlers from child component
+         */
+        listenToEvents: function listenToEvents() {
+            var vm = this;
+            this.$on('doFilter', function (payload) {
+                // reset the transactions
+                vm.transactions = [];
+                // update the payload
+                vm.payload = payload;
+                // reset the infiniteLoading so it can call the infiniteHandler() again with the new payload
+                vm.$nextTick(function () {
+                    vm.link = ''; //reset the pagination link
+                    vm.total = 0; //reset the pagination total
+                    vm.$refs.infiniteLoading.$emit('$InfiniteLoading:reset');
+                });
+            });
+        },
+
         /*
          * Hanldes the infinite loading scroll
          *  
@@ -82803,7 +82809,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     $state.loaded();
 
                     // do dom update after the data is reflected
-                    vm.$nextTick(function () {});
+                    vm.$nextTick(function () {
+                        $('[data-toggle="tooltip"]').tooltip();
+                    });
 
                     // set the state to complete when all the results are loaded.
                     if (vm.total == vm.transactions.length || vm.total == 0) {
@@ -82886,98 +82894,112 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("table", { staticClass: "table table-hover" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "tbody",
-      [
-        _vm._l(_vm.transactions, function(transaction) {
-          return _c("tr", { attrs: { id: "transactions-body" } }, [
-            _c("td", { staticClass: "fixed-width-m" }, [
-              _c(
-                "span",
-                {
-                  staticClass: "amount",
-                  class: transaction.debit ? "bg-success" : "bg-danger"
-                },
-                [
-                  _c("i", {
-                    staticClass: "fa",
-                    class: transaction.debit ? "fa-arrow-up" : "fa-arrow-down"
-                  }),
+  return _c(
+    "div",
+    { staticClass: "transactions-container" },
+    [
+      _c("transactions-filter", { attrs: { total: _vm.total } }),
+      _vm._v(" "),
+      _c("table", { staticClass: "table table-hover" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          [
+            _vm._l(_vm.transactions, function(transaction) {
+              return _c("tr", { attrs: { id: "transactions-body" } }, [
+                _c("td", { staticClass: "fixed-width-m" }, [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "amount",
+                      class: transaction.debit ? "bg-success" : "bg-danger"
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fa",
+                        class: transaction.debit
+                          ? "fa-arrow-up"
+                          : "fa-arrow-down"
+                      }),
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(transaction.amount) +
+                          "\n                    "
+                      )
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "fixed-width-m due-at" }, [
+                  _vm._v(_vm._s(transaction.due_at))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "transaction-title text-info" }, [
                   _vm._v(
                     "\n                    " +
-                      _vm._s(transaction.amount) +
-                      "\n                "
-                  )
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "fixed-width-m due-at" }, [
-              _vm._v(_vm._s(transaction.due_at))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "transaction-title text-info" }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(transaction.title) +
-                  "\n                "
-              ),
-              _c("p", { staticClass: "subtablecell" }, [
-                _c("i", { class: transaction.category_icon }),
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(transaction.category_name) +
-                    "\n                "
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "td",
-              {
-                directives: [
-                  {
-                    name: "touch",
-                    rawName: "v-touch:swipe",
-                    value: _vm.handleTouchEvents,
-                    expression: "handleTouchEvents",
-                    arg: "swipe"
-                  },
-                  {
-                    name: "touch-class",
-                    rawName: "v-touch-class",
-                    value: "touch-active",
-                    expression: "'touch-active'"
-                  }
-                ],
-                staticClass: "row-actions"
-              },
-              [
-                _c("ul", [
-                  _c("li", [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-info btn-xs",
-                        attrs: { href: transaction.edit_url }
-                      },
-                      [_vm._v("Edit")]
+                      _vm._s(transaction.title) +
+                      "\n                    "
+                  ),
+                  _c("p", { staticClass: "subtablecell" }, [
+                    _c("i", { class: transaction.category_icon }),
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(transaction.category_name) +
+                        "\n                    "
                     )
                   ])
-                ])
-              ]
-            )
-          ])
-        }),
-        _vm._v(" "),
-        _c("infinite-loading", { on: { infinite: _vm.infiniteHandler } })
-      ],
-      2
-    )
-  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  {
+                    directives: [
+                      {
+                        name: "touch",
+                        rawName: "v-touch:swipe",
+                        value: _vm.handleTouchEvents,
+                        expression: "handleTouchEvents",
+                        arg: "swipe"
+                      },
+                      {
+                        name: "touch-class",
+                        rawName: "v-touch-class",
+                        value: "touch-active",
+                        expression: "'touch-active'"
+                      }
+                    ],
+                    staticClass: "row-actions"
+                  },
+                  [
+                    _c("ul", [
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-info btn-xs",
+                            attrs: { href: transaction.edit_url }
+                          },
+                          [_vm._v("Edit")]
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              ])
+            }),
+            _vm._v(" "),
+            _c("infinite-loading", {
+              ref: "infiniteLoading",
+              on: { infinite: _vm.infiniteHandler }
+            })
+          ],
+          2
+        )
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -96388,6 +96410,282 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 355 */,
+/* 356 */,
+/* 357 */,
+/* 358 */,
+/* 359 */,
+/* 360 */,
+/* 361 */,
+/* 362 */,
+/* 363 */,
+/* 364 */,
+/* 365 */,
+/* 366 */,
+/* 367 */,
+/* 368 */,
+/* 369 */,
+/* 370 */,
+/* 371 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(10)
+/* script */
+var __vue_script__ = __webpack_require__(372)
+/* template */
+var __vue_template__ = __webpack_require__(373)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/TransactionsFilter.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-22bc65b8", Component.options)
+  } else {
+    hotAPI.reload("data-v-22bc65b8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 372 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_Helper_js__ = __webpack_require__(296);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['total'],
+    mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_Helper_js__["a" /* default */]],
+    data: function data() {
+        return {
+            categories: [],
+            loaded: false,
+            payload: {
+                categories: [],
+                date: null
+            }
+
+        };
+    },
+    mounted: function mounted() {
+        this.initDateRangePicker();
+        this.fetchUserCategories();
+    },
+
+    watch: {
+        payload: {
+            handler: function handler(value) {
+                // whenever the payload change, run the filter request by emitting an event to the parent component
+                this.$parent.$emit('doFilter', this.payload);
+            },
+            deep: true
+        }
+    },
+    methods: {
+        /*
+         * Initialize the jquery daterange picker plugin
+         */
+        initDateRangePicker: function initDateRangePicker() {
+            var vm = this;
+            $('#reportrange').daterangepicker({
+                ranges: {
+                    'Today': [__WEBPACK_IMPORTED_MODULE_1_moment___default()(), __WEBPACK_IMPORTED_MODULE_1_moment___default()()],
+                    'Yesterday': [__WEBPACK_IMPORTED_MODULE_1_moment___default()().subtract(1, 'days'), __WEBPACK_IMPORTED_MODULE_1_moment___default()().subtract(1, 'days')],
+                    'Last 7 Days': [__WEBPACK_IMPORTED_MODULE_1_moment___default()().subtract(6, 'days'), __WEBPACK_IMPORTED_MODULE_1_moment___default()()],
+                    'Last 30 Days': [__WEBPACK_IMPORTED_MODULE_1_moment___default()().subtract(29, 'days'), __WEBPACK_IMPORTED_MODULE_1_moment___default()()],
+                    'This Month': [__WEBPACK_IMPORTED_MODULE_1_moment___default()().startOf('month'), __WEBPACK_IMPORTED_MODULE_1_moment___default()().endOf('month')],
+                    'Last Month': [__WEBPACK_IMPORTED_MODULE_1_moment___default()().subtract(1, 'month').startOf('month'), __WEBPACK_IMPORTED_MODULE_1_moment___default()().subtract(1, 'month').endOf('month')]
+                },
+                locale: {
+                    format: 'DD/MMM/YYYY'
+                },
+                autoApply: true
+            }, function cb(start, end) {
+                var startDate = start.format('MMMM D, YYYY');
+                var endDate = end.format('MMMM D, YYYY');
+                vm.payload.date = startDate + ' - ' + endDate;
+                // v-model of 'selectedDate' is weirdly not reactive, so i had to do it manual
+                $('#reportrange span').html(startDate + ' - ' + endDate);
+            });
+        },
+
+        /*
+         * Get the user defined categories
+         */
+        fetchUserCategories: function fetchUserCategories(direction) {
+            var vm = this;
+
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/transactions/categories').then(function (response) {
+                vm.categories = response.data.categories;
+                vm.loaded = true;
+                // update the dom after the data changes are applied
+                vm.$nextTick(function () {
+                    $("#categories-filter").selectpicker('render');
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 373 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "transactions-filter clearfix" }, [
+    _vm.total
+      ? _c(
+          "span",
+          {
+            staticClass: "badge pull-right",
+            attrs: {
+              id: "filter-count",
+              "data-toggle": "tooltip",
+              title: "Total results"
+            }
+          },
+          [_vm._v(_vm._s(_vm.total))]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.loaded
+      ? _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.payload.categories,
+                expression: "payload.categories"
+              }
+            ],
+            staticClass: "selectpicker pull-right",
+            attrs: {
+              multiple: "multiple",
+              "data-selected-text-format": "count > 1",
+              title: "Categories",
+              name: "categories[]",
+              id: "categories-filter"
+            },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.payload,
+                  "categories",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          _vm._l(_vm.categories, function(category, id) {
+            return _c("option", { domProps: { value: id } }, [
+              _vm._v(" " + _vm._s(category))
+            ])
+          })
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", { staticClass: "pull-right", attrs: { id: "reportrange" } }, [
+      _c("i", { staticClass: "glyphicon glyphicon-calendar fa fa-calendar" }),
+      _vm._v("  Date range \n        "),
+      _c("span", {
+        attrs: { id: "range-value" },
+        model: {
+          value: _vm.payload.date,
+          callback: function($$v) {
+            _vm.$set(_vm.payload, "date", $$v)
+          },
+          expression: "payload.date"
+        }
+      }),
+      _vm._v(" "),
+      _c("b", { staticClass: "caret" })
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-22bc65b8", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

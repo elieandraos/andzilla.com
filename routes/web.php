@@ -26,7 +26,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('transactions/{id}/edit', 'TransactionsController@edit')->name('transactions.edit');
     Route::post('transactions/{id}/update', 'TransactionsController@update')->name('transactions.update');
     Route::post('transactions/fetch', 'TransactionsController@fetch')->name('transactions.fetch');
-
+    // transactions filter
+    Route::post('transactions/categories', 'TransactionsController@categories')->name('transactions.categories');
     // Reports
     Route::get('reports/current-month', 'ReportsController@index')->name('reports.current-month');
     Route::get('reports/monthly-total', 'ReportsController@monthly')->name('reports.monthly-total');
@@ -38,9 +39,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 /*
 @todo:
 - cache transactions per user, as it will be faster to fetch for reports
-- link transaction to client and supplier
 - delete transcations
-- category module
+- category module: let the user have the ability to create his own category
 - verify email address upon sign up
 - mail configuration on server
 - npm configuration on server (move back app/js css/ to gitgnore)

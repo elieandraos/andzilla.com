@@ -34,15 +34,7 @@ class TransactionsController extends Controller
 	 */
     public function index()
     {
-        // get the user categories
-        $user_categories = $this->user->categories()->orderBy('name', 'ASC')->get();
-        $categories = $user_categories->pluck('name', 'id')->toArray();
-        //Create an array of option attribute
-        $icons_attributes = [];
-        foreach($user_categories as $item)
-            $icons_attributes[$item->id] = ['data-icon' => $item->icon ];
-
-    	return view('transactions.index', ['categories' => $categories, 'icons_attributes' => $icons_attributes ]);
+    	return view('transactions.index');
     }
 
     /**
@@ -53,7 +45,18 @@ class TransactionsController extends Controller
      */
     public function fetch(Request $request)
     {
-        $transactions = Transaction::mine()->orderBy('due_at', 'DESC')->paginate(15);
+        \DB::enableQueryLog();
+        $transactions = Transaction::mine();
+
+        //chain the filters if applicable
+        if($request->has('categories'))
+            $transactions = $transactions->byCategories($request->get('categories'));
+
+        if($request->has('date'))
+            $transactions = $transactions->byDaterange($request->get('date'));
+
+        $transactions = $transactions->orderBy('due_at', 'DESC')->paginate(15);
+        //dd(\DB::getQueryLog());
         return TransactionResource::collection($transactions);
     }
 
@@ -128,5 +131,19 @@ class TransactionsController extends Controller
         
         flash('Transaction was updated successfully.')->success();
         return redirect(route('transactions'));
+    }
+
+    public function categories()
+    {
+         // get the user categories
+        $user_categories = $this->user->categories()->orderBy('name', 'ASC')->get();
+        $categories = $user_categories->pluck('name', 'id');
+
+        return response()->json(['categories' => $categories]);
+        //Create an array of option attribute
+        // $icons_attributes = [];
+        // foreach($user_categories as $item)
+        //     $icons_attributes[$item->id] = ['data-icon' => $item->icon ];
+
     }
 }
