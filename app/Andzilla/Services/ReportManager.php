@@ -18,8 +18,39 @@ class ReportManager
 				->selectRaw('*, sum(amount) as total')
 				->mine()
 				->whereMonth('due_at', '=', date('m'))
+				->whereYear('due_at', '=', date('Y'))
 				->where('debit', '=', 0)
 				->groupBy('category_id')
+				->get();
+	}
+
+	/**
+	 * Get the total amount of expenses/income of the current month
+	 * 
+	 * @return type
+	 */
+	public function getCurrentMonthTotalByType($type = 0)
+	{
+		return Transaction::selectRaw('sum(amount) as total')
+				->mine()
+				->whereMonth('due_at', '=', date('m'))
+				->whereYear('due_at', '=', date('Y'))
+				->where('debit', '=', $type)
+				->get();
+	}
+
+	/**
+	 * Get the total number of expenses transactions of the current month
+	 * 
+	 * @return type
+	 */
+	public function getCurrentMonthTotalNumberOfExpensesTransactions()
+	{
+		return Transaction::selectRaw('count(id) as count')
+				->mine()
+				->whereMonth('due_at', '=', date('m'))
+				->whereYear('due_at', '=', date('Y'))
+				->where('debit', '=', 0)
 				->get();
 	}
 

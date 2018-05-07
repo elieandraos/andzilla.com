@@ -164,6 +164,24 @@ div.empty-list {
   font-style: italic;
 }
 
+.navbar-nav .caret {
+  color: #FFF !important;
+}
+
+.mt0 {
+  margin-top: 0;
+}
+
+.progress-xs {
+  height: 8px !important;
+  margin-bottom: 0px !important;
+}
+
+.row.match-my-cols [class*="col-"] {
+  margin-bottom: -99999px;
+  padding-bottom: 99999px;
+}
+
 /** Bootstrap select customization **/
 
 div.btn-group.bootstrap-select {

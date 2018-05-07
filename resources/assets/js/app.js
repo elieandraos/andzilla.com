@@ -20,15 +20,15 @@ require('daterangepicker');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
- // http://tobiasahlin.com/blog/chartjs-charts-to-get-you-started/
-
 Vue.component('transactions', require('./components/Transactions.vue')); 
 Vue.component('graph-pie', require('./components/GraphPie.vue'));
 Vue.component('graph-line', require('./components/GraphLine.vue'));
 Vue.component('graph-horizontal-bar', require('./components/graphHorizontalBar.vue'));
+Vue.component('dashboard-income-widget', require('./components/DashboardIncomeWidget.vue'));
+Vue.component('dashboard-transactions-widget', require('./components/DashboardTransactionsWidget.vue'));
+Vue.component('dashboard-category-widget', require('./components/DashboardCategoryWidget.vue'));
  
 Vue.use(Vue2TouchEvents);
-
 
 const app = new Vue({
     el: '#app'
